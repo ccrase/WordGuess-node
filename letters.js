@@ -10,11 +10,11 @@ function Letter(underlyingCharacter) {
     
     this.returnPlaceholder = function(){
         if(this.hasBeenGuessed){
-           console.log(this.character);
+            return this.character;
 
         }else{
             var underscore = "_";
-            console.log(underscore);
+            return underscore;
         }
     }
     this.returnPlaceholder(); 
@@ -25,8 +25,8 @@ function Letter(underlyingCharacter) {
             this.hasBeenGuessed = true;
         }
     }
-    this.checkCharacter();
+    //this.checkCharacter();
 };
 
 
-module.export = Letter;
+module.exports = Letter;
