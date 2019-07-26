@@ -1,7 +1,7 @@
 var Letter = require('./letters.js');
 
-function Word(testWord) {
-    this.wordArray = testWord;
+function Word(input) {
+    this.wordArray = input;
 
     this.letterArray = [],
     this.makeLetters = function(){
@@ -11,17 +11,21 @@ function Word(testWord) {
         }
     },
     this.makeLetters(),
-    console.log(this.letterArray);
-
+    
     this.returnWord = function(){
         this.wordDisplay = [];
         for(var i = 0; i < this.letterArray.length;i++){
             this.wordDisplay.push(this.letterArray[i].returnPlaceholder());
         }
-        
+        console.log(this.wordDisplay.join(" "));
     }
-    this.returnWord();
-    console.log(this.wordDisplay.join(" "));
+
+    this.checkWord = function(input){
+        for(var i =0; i <this.letterArray.length; i++){
+            this.letterArray[i].checkCharacter(input);
+        }
+        this.returnWord();
+    }
 };    
 
 

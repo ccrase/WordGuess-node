@@ -19,13 +19,13 @@ function Letter(underlyingCharacter) {
     }
     this.returnPlaceholder(); 
 
-    this.checkCharacter = function(userGuess){
-        userGuess = userGuess.toUpperCase();
-        if(this.character === userGuess){
+    this.checkCharacter = function(input){
+        var input = input.toLowerCase();
+        if(this.character === input){
             this.hasBeenGuessed = true;
+            this.returnPlaceholder();
         }
     }
-    //this.checkCharacter();
 };
 
 
