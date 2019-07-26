@@ -1,5 +1,5 @@
 var Word = require("./word");
-var prompt = require('prompt');
+//var prompt = require('prompt');
 var inquirer = require('inquirer');
 var colors = require('colors');
 
@@ -9,7 +9,10 @@ var gameWord = "";
 var counter = 0;
 
 function gameStart(){
-    console.log("Let's Start! You get 12 tries.".cyan);
+    console.log("Let's Start! You get 8 tries.".yellow);
+    currentWord = "";
+    gameWord = "";
+    counter = 0;
     assignWord();
     promptUser();
 }
@@ -19,7 +22,6 @@ function assignWord(){
     var randomNum = Math.floor(Math.random() * (wordsArray.length));
     currentWord = wordsArray[randomNum];
     gameWord = new Word(currentWord);
-    console.log(currentWord);
     gameWord.returnWord();
 };
 
@@ -37,34 +39,33 @@ function promptUser(){
         });
 
     }else{
-        console.log("Game Over. You are out of tries.".magenta);
-        currentWord = "";
-        gameWord = "";
-        counter = 0;
-        startGame();
+        console.log("Game Over!! You are out of tries.".magenta);
+        gameStart();
     }
 }
 
 function checkAnswer(answer){
     var letterCheck = answer.userguess.toLowerCase();
     gameWord.checkWord(letterCheck);
-    console.log(gameWord.letterArray);
-    console.log(gameWord.wordDisplay);
     if(!currentWord.includes(letterCheck)){
-        console.log("Wrong guess!")
+        console.log("INCORRECT!".red);
+        console.log("______________________________");
         counter++
-        console.log(counter);
+        console.log("You have ".yellow + (8 - counter) + " guesses left".yellow);
         promptUser();
 
     }else{
         rightGuess();
+        promptUser();
     }
 }
 function rightGuess(){
-    console.log("Correct!")
-    promptUser();
-    if(currentWord ===gameWord.wordDisplay){
-        console.log("Congrats, you chose the right word!")
+    console.log("Correct!!!!!!!!".green);
+    console.log("______________________________");
+    if(currentWord ===gameWord.wordDisplay.join("")){
+        console.log("Congrats, you won!!!!!!!");
+        console.log("______________________________");
+        gameStart();
     }
 }
 
